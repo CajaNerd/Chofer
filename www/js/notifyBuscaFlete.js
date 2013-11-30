@@ -1,5 +1,5 @@
 //Conectamos al servidor node
-var cliSocket = io.connect('http://localhost:8000',{
+var cliSocket = io.connect('http://cajanerd.kd.io:8000',{
   'auto connect': false
 });
 
