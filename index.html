@@ -52,7 +52,7 @@
 <!-- NAVBAR
 ================================================== -->
     <body>
-      <!--JQ PAGE -->
+     <!--JQ PAGE -->
       <div data-role="page" id="demo-page" data-theme="d" data-url="demo-page">
         <!-- JQ HEADER -->
         <div data-role="header" data-theme="b" id="header">
@@ -81,8 +81,7 @@
       
       </div>
       <!-- / JQ FOOTER -->  
-    </div><!--/JQ PAGE -->
-
+    
         <!-- JQ Panel Izquierdo -->
         <div data-role="panel" id="left-panel" data-theme="b">
         <h4 class="pacifico">Transportista</h4>           
@@ -210,13 +209,13 @@
         </div>
       </div><!-- /panel Derecho -->
 
-
-      <div class="modal fade" id="notificacion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">          
-            <h4 class="modal-title">¡Nuevo Solicitud!</h4><span style=" float:right;" class="glyphicon glyphicon-send"></span>
-          </div>
+      <div data-role="popup" id="notificacion" data-theme="a" class="ui-corner-all">
+        
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">          
+              <h4 class="modal-title">¡Nuevo Solicitud!</h4><span style=" float:right;" class="glyphicon glyphicon-send"></span>
+              </div>
           <div class="modal-body">
             <div class="row">
               <div class="col-lg-12">
@@ -313,7 +312,9 @@
           </div>            
         </div><!-- /.modal-content data-dismiss="modal" -->
         </div><!-- /.modal-dialog onclick="cerrarSolicitud(1000)"-->
-      </div><!-- /.modal -->
+      
+    </div><!-- /Popup -->
+
       <!-- Modal -->
       <div class="modal fade" id="modalFin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -339,36 +340,21 @@
           </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
       </div><!-- /.modal -->
-        <!-- Modal Log In-->
-      <div class="modal fade" id="modalLogin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
-              <div class="modal-content">
-                  <div class="modal-header">
-                      <h4 class="modal-title"><span class="glyphicon glyphicon-off" ></span> Iniciar Sesión</h4>
-                  </div>
-                  <div class="modal-body">
-                      <p class="text-danger" id="errorLogin"></p>
-                      <form class="form-horizontal" role="form">
-                          <div class="form-group">
-                              <label for="correoChofer" class="col-lg-3 control-label"><span class="glyphicon glyphicon-envelope" ></span> Correo (Usuario ID)</label>
-                              <div class="col-lg-8">
-                                  <input type="text" class="form-control" id="correoChofer" placeholder="mi@correo.com">
-                              </div>
-                          </div>
-                          <div class="form-group">
-                              <label for="passwordChofer" class="col-lg-3 control-label"><span class="glyphicon glyphicon-asterisk" ></span> Password</label>
-                              <div class="col-lg-8">
-                                  <input type="password" class="form-control" id="passwordChofer" placeholder="********">
-                              </div>
-                          </div>
-                      </form>
-                  </div>
-                  <div class="modal-footer">
-                      <button type="button" id="btnIni" class="btn btn-primary" onclick='iniciarSesion()'>Ingresar</button>
-                  </div>
-              </div><!-- /.modal-content -->
-          </div><!-- /.modal-dialog -->
-      </div><!-- /.modal -->
-     
+
+      <!-- popup Log In-->
+      <div data-role="popup" id="modalLogin" data-theme="a" class="ui-corner-all">
+        <form>
+            <div style="padding:10px 20px;">
+                <h3><span class="glyphicon glyphicon-off" ></span> Iniciar Sesión></h3>
+                <p class="text-danger" id="errorLogin"></p>
+                <label for="un" class="ui-hidden-accessible">span class="glyphicon glyphicon-envelope" ></span> Correo (Usuario ID)</label>
+                <input type="text" id="correoChofer" placeholder="mi@correo.com">
+                <label for="pw" class="ui-hidden-accessible"><span class="glyphicon glyphicon-asterisk" ></span> Password</label>
+                <input type="password" id="passwordChofer" placeholder="********">
+                <button type="submit" id="btnIni" onclick='iniciarSesion()'>Ingresar</button>
+                
+            </div>
+        </form>
+      </div><!-- /.popup login -->
     </body>
 </html>
