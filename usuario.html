@@ -1,0 +1,202 @@
+<!--
+	Proyecto: Busca Flete Web App / Mobile App
+	Autores:
+		Patricio GuzmÃ¡n
+		Allan Awerkin
+		Sebastian Salazar
+-->
+<!DOCTYPE html>
+<html lang="es" class="ui-mobile ui-loading">
+<head>
+	<title>Busca Flete</title>
+	<meta charset="utf-8">
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+	<script type="text/javascript" src="phonegap.js"></script>	
+
+	<link rel="stylesheet" href="css/jquery.mobile-1.4.2.min.css" />
+	<link rel="stylesheet" type="text/css" href="css/lib.css" media="screen">
+	<script src="js/jquery-1.11.0.js"></script>
+	<script src="js/jquery.mobile-1.4.2.min.js"></script>
+	<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
+	<script src="js/promap.js"></script>
+<body>
+<!-- Page map-->
+<div data-role="page" id="map-page">
+<!-- Header -->
+	<div data-role="header" data-position="fixed" data-fullscreen="true" data-tap-toggle="false" class="">
+		<div class="pacifico">BuscaFlete.cl</div>
+		<a href="#nav-panel" id="btnOpc" data-shadow="false"><img src="img/btnOpc.svg"></a>
+		<div data-role="navbar" style="margin: 0px 12px 0px 12px">
+        	<ul>
+            	<li><input type="search" name="origen" id="origen" placeholder="Buscando..." value="" x-webkit-speech></li>
+        	</ul>
+    	</div><!-- /navbar -->
+	</div><!-- /header -->	
+
+<!-- Panel left -->
+	<div data-role="panel" data-display="reveal" data-theme="b" id="nav-panel">
+    <!-- panel content goes here -->
+      	<ul data-role="listview">
+			<li data-icon="back"><a href="#" data-rel="close">Cerrar</a></li>
+			<li data-icon="clock"><a href="#viajes" data-transition="slide"> Historial</a></li>
+			<li data-icon="eye"><a href="#camion" data-transition="slide"> Mi Camion</a></li>
+			<li data-icon="user"><a href="#perfil" data-transition="slide"> Mi Perfil</a></li>
+			<li data-icon="info"><a href="#acercade" data-transition="slide"> Acerca de</a></li>
+			<li data-icon="power"><a href="#" > Cerrar sesion</a></li>
+		</ul>    
+	</div><!-- /Panel left -->
+	
+<!-- Mapa -->
+	<div role="main" class="ui-content" style="padding: 0">
+        <!-- map loads here... -->
+        <div class="ui-loader ui-corner-all ui-body-a ui-loader-default"><span class="ui-icon-loading"></span><h1>loading</h1></div>
+        <div id="map-canvas"></div>
+        
+    </div><!-- /Mapa -->
+
+<!-- Footer -->
+	<div data-role="footer" data-position="fixed" data-fullscreen="true" data-tap-toggle="false" data-theme="b" >
+		<a style="width: 100%" href="#option-page" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-info" data-transition="slide">Nueva Oferta</a>
+	</div><!-- /Footer -->
+
+</div><!-- /Page map -->
+
+<!-- Page Options -->
+<div data-role="page" id="option-page" data-title="Tu carga" data-url="option-page" style="overflow: scroll">
+	<div data-role="header" data-tap-toggle="false" class="">
+		<h1>Información</h1>
+		<a href="#page-map" data-rel="back" data-icon="arrow-l" data-iconpos="notext" data-shadow="false" data-icon-shadow="false">Volver</a>
+	</div><!-- /header -->
+
+	<div role="main" class="ui-content content-small">
+		<ul data-role="listview" data-inset="true">
+			<li class="ui-field-contain">
+				<h1>Info Cliente</h1>
+		    </li>
+		    <li>
+		    	<h1>Kilometros y Tiempo</h1>
+		    </li>
+		    <li>
+		    	<h1>Mapa</h1>
+		    </li>
+		    <li>
+		    	<h1>Peso</h1>
+		    </li>
+		    <li>
+		        <h1>Fotos</h1>
+		    </li>
+		    <li>
+		       	<h1>Calle de Origen y Destino</h1>
+		    </li>
+		    <li>
+		    	<h1>Tipo de carga</h1>
+		    </li>
+		    <li class="ui-field-contain">
+		      	<div class="rwd-example">
+			    <!-- secondary story block #1 -->
+			    <div class="ui-block-a">
+				    <div class="ui-body ui-body-d">
+				        <h4>Cargar</h4>
+				        <p><select name="cargar" id="cargar" data-role="slider" data-mini="true">
+								<option value="off">No</option>
+								<option value="on" selected="">Si</option>
+							</select></p>
+				        </div>
+				    </div>
+				    <!-- secondary story block #2 -->
+				    <div class="ui-block-b">
+				        <div class="ui-body ui-body-d">
+				            <h4>Descargar</h4>
+				            <p><select name="decargar" id="descargar" data-role="slider" data-mini="true">
+									<option value="off">No</option>
+									<option value="on" selected="">Si</option>
+								</select>	</p>
+				        </div>
+				    </div>
+				</div><!-- /rwd-example -->		        
+		        </li>
+		        <li>
+		        	<h1>Informacion Extra de la Carga</h1>
+		        </li>
+		        <li>
+		        	<h1>Tu Oferta</h1>
+		        	<input type="number" name="precio" id="precio" value="$5.000" data-clear-btn="true" placeholder="Precio">
+		        </li>
+		        <li>
+		        	<a href="#" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-edit">Enviar Precio</a>
+		        </li>
+		        <li>
+		        	<a href="#" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-gear">Opciones</a>
+		        </li>
+		        <li>
+		        	<a href="#" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-forbidden">Rechazar Solicitud</a>
+		        </li>
+		    </ul>
+	</div><!-- /Content -->
+</div><!-- Page Options -->
+
+<!-- PAGE Viajes-->
+<div data-role="page" id="viajes">
+	<div data-role="header">
+	<a href="#" data-rel="back" data-icon="arrow-l" data-iconpos="notext" data-shadow="false" data-icon-shadow="false">Volver</a>
+		<h1>Viajes</h1>
+	</div>
+	<div data-role="content">
+		<div class="ui-corner-all custom-corners">
+  <div class="ui-bar ui-bar-a">
+    
+    <a href="#" class="ui-btn ui-shadow ui-corner-all ui-icon-carat-r ui-btn-icon-notext"></a>
+
+  </div>
+  <div class="ui-body ui-body-a">
+    <ul data-role="listview">
+    	<li>Fecha</li>
+    	<li>Nombre Cliente</li>
+    	<li>Telefono</li>
+    	<li>Cargas</li>
+    	<li>Origen</li>
+    	<li>Destino</li>
+    	<li>Calificacion</li>
+    	<li>Estado</li>
+
+    </ul>
+  </div>
+</div>
+	</div>
+	
+</div>
+
+<!-- PAGE Camiones-->
+<div data-role="page" id="camion">
+	<div data-role="header">
+	<a href="#" data-rel="back" data-icon="arrow-l" data-iconpos="notext" data-shadow="false" data-icon-shadow="false">Volver</a>
+		<h1>Camion</h1>
+	</div>
+	<div data-role="content"></div>
+	<div data-role="footer"></div>
+</div>
+
+<!-- PAGE Perfil-->
+<div data-role="page" id="perfil">
+	<div data-role="header">
+	<a href="#" data-rel="back" data-icon="arrow-l" data-iconpos="notext" data-shadow="false" data-icon-shadow="false">Volver</a>
+		<h1>Perfil</h1>
+	</div>
+	<div data-role="content"></div>
+	<div data-role="footer"></div>
+</div>
+
+<!-- PAGE Acerca-->
+<div data-role="page" id="acercade">
+	<div data-role="header">
+	<a href="#" data-rel="back" data-icon="arrow-l" data-iconpos="notext" data-shadow="false" data-icon-shadow="false">Volver</a>
+		<h1>Acerca de</h1>
+	</div>
+	<div data-role="content"></div>
+	<div data-role="footer"></div>
+</div>
+
+
+</body>
+</html>
